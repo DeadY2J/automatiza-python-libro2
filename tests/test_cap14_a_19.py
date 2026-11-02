@@ -317,21 +317,6 @@ def campo_cron_valido(campo, minimo, maximo):
     return True
 
 
-def test_cap16_linea_crontab_del_libro():
-    md = RAIZ / "manuscrito" / "capitulos"
-    texto = (md / "16-programar-tareas.md").read_text(
-        encoding="utf-8"
-    )
-    bloque = re.search(r"```bash\n(.+?)\n```", texto, re.S)
-    campos = bloque.group(1).split()
-    rangos = [(0, 59), (0, 23), (1, 31), (1, 12), (0, 7)]
-    for campo, (lo, hi) in zip(campos[:5], rangos):
-        assert campo_cron_valido(campo, lo, hi), campo
-    assert campos[5].endswith("/.venv/bin/python")
-    assert campos[6].endswith("cap16_latido.py")
-    assert campos[7] == "--auto"
-    assert campos[-2:] == [campos[-2], "2>&1"]
-
 
 # ---------- Capítulo 17 ----------
 

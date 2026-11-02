@@ -71,11 +71,7 @@ pyinstaller`) para crear ejecutables; no hace falta para el resto.
 ## Probarlo todo
 
 ```bash
-bash tools/ejecutar_todo.sh
+python -m pytest -q tests
 ```
 
-Ejecuta cada capítulo en una carpeta temporal (sin `--hacer` y con
-`--hacer`), guarda las salidas en `salida/ejecucion/` y lanza `pytest`
-sobre `tests/`. Las pruebas de los capítulos 11 a 15 y 18 simulan las
-respuestas de red (Open-Meteo, PokéAPI, books.toscrape.com, el modelo de
-IA y Discord), así que no necesitan conexión ni claves.
+Las pruebas simulan las respuestas de red (Open-Meteo, PokéAPI, books.toscrape.com y el modelo de IA), así que no necesitan internet ni claves.
