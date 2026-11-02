@@ -1,0 +1,20 @@
+name: Pruebas en Windows, Linux y macOS
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  pruebas:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar dependencias
+        run: python -m pip install openpyxl pypdf Pillow requests beautifulsoup4 pytest
+      - name: Ejecutar pruebas
+        run: python -m pytest -q tests
